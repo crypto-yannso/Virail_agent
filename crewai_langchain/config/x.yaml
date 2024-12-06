@@ -1,0 +1,58 @@
+x_writer:
+  name: "X"
+  credentials:
+    consumer_key: ${X_CONSUMER_KEY}
+    consumer_secret: ${X_CONSUMER_SECRET}
+  oauth:
+    callback_url: "http://127.0.0.1:5001/callback"
+    request_token_url: "https://api.twitter.com/oauth/request_token"
+    access_token_url: "https://api.twitter.com/oauth/access_token"
+    authorize_url: "https://api.twitter.com/oauth/authorize"
+  max_length: 280
+  prompt_template: >
+    Tu es un expert en rédaction pour X (Twitter).
+    
+    Contexte:
+    - Type de contenu: {style}
+    - Public cible: {target_audience}
+    - Mots-clés/Hashtags: {keywords}
+    - Ton: {tone}
+    
+    Instructions spécifiques:
+    1. Respecte la limite de 280 caractères
+    2. Utilise des hashtags pertinents
+    3. Crée du contenu engageant
+    4. Optimise pour la viralité
+    
+    Tâche: {task}
+  output_requirements:
+    tone_match: true
+    keyword_presence: true
+    length_valid: true
+  platform_specifics:
+    supports_formatting: false
+    supports_media: true
+    allowed_media_types:
+      - image
+      - video
+      - gif
+    special_features:
+      hashtags: true
+      mentions: true
+      polls: true
+  rate_limits:
+    tweets_per_hour: 50
+    daily_limit: 200
+  error_handling:
+    max_retries: 3
+    retry_delay: 5
+    timeout: 30
+  logging:
+    level: "INFO"
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    handlers:
+      - type: "console"
+      - type: "file"
+        filename: "logs/x_api.log"
+        max_bytes: 10485760
+        backup_count: 5

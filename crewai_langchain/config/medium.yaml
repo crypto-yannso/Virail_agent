@@ -1,0 +1,29 @@
+medium_writer:
+  credentials:
+    client_id: ${MEDIUM_CLIENT_ID}
+    client_secret: ${MEDIUM_CLIENT_SECRET}
+    redirect_uri: "http://localhost:8000/callback/medium"
+    api:
+      base_url: "https://api.medium.com/v1"
+  max_length: 1000
+  name: Medium
+  output_requirements:
+    keyword_presence: true
+    length_valid: true
+    tone_match: true
+  platform_specifics:
+    allowed_media_types:
+    - image
+    rate_limits:
+      posts_per_day: 10
+    special_features:
+      custom_domain: true
+      seo_optimization: true
+      series_support: true
+    supports_formatting: true
+    supports_media: true
+  prompt_template: "Tu es un expert en r\xE9daction pour Medium.\nContexte: - Publication:\
+    \ {target_audience} - Type d'article: {style} - Mots-cl\xE9s: {keywords} - Ton:\
+    \ {tone}\nInstructions sp\xE9cifiques: 1. Structure l'article avec des sous-titres\
+    \ clairs 2. Utilise le formatage Markdown 3. Inclus des exemples concrets 4. Optimise\
+    \ pour le SEO 5. Ajoute des call-to-action pertinents\nT\xE2che: {task}\n"

@@ -1,0 +1,37 @@
+telegram_writer:
+  name: "Telegram"
+  max_length: 4096
+  prompt_template: >
+    Tu es un expert en rédaction pour Telegram.
+    
+    Contexte:
+    - Type de canal: {target_audience}
+    - Style: {style}
+    - Mots-clés: {keywords}
+    - Ton: {tone}
+    
+    Instructions spécifiques:
+    1. Utilise le formatage HTML approprié
+    2. Crée un contenu concis et engageant
+    3. Optimise pour la lecture mobile
+    4. Prévois des boutons d'action si nécessaire
+    
+    Tâche: {task}
+  output_requirements:
+    tone_match: true
+    keyword_presence: true
+    length_valid: true
+  platform_specifics:
+    supports_formatting: true
+    supports_media: true
+    allowed_media_types:
+      - image
+      - video
+      - document
+      - audio
+    special_features:
+      inline_buttons: true
+      message_threading: true
+      html_formatting: true
+    rate_limits:
+      messages_per_minute: 20

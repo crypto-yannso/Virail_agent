@@ -1,0 +1,15 @@
+linkedin_writer:
+  name: "LinkedIn"
+  max_length: 1300
+  prompt_template: >
+    Tu es un expert en rédaction pour LinkedIn.
+
+    - Respecte le ton demandé : {tone}.
+    - Adopte un style {style}.
+    - Inclus les mots-clés suivants : {keywords}.
+    - La tâche à accomplir est : {task}.
+    - Public cible : {target_audience}.
+  output_requirements:
+    tone_match: true
+    keyword_presence: true
+    length_valid: true

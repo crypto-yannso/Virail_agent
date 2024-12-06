@@ -1,0 +1,60 @@
+reddit_writer:
+  name: "Reddit"
+  credentials:
+    client_id: ${REDDIT_CLIENT_ID}
+    client_secret: ${REDDIT_CLIENT_SECRET}
+    user_agent: ${REDDIT_USER_AGENT}
+  oauth:
+    redirect_uri: "http://localhost:8080"
+    scopes:
+      - "identity"
+      - "submit"
+      - "read"
+      - "edit"
+      - "history"
+  max_title_length: 300
+  max_content_length: 40000
+  prompt_template: >
+    Tu es un expert en rédaction pour Reddit.
+    
+    Contexte:
+    - Subreddit cible: {subreddit}
+    - Type de contenu: {style}
+    - Public cible: {target_audience}
+    - Mots-clés: {keywords}
+    - Ton: {tone}
+    
+    Instructions spécifiques:
+    1. Crée un titre accrocheur (max 300 caractères)
+    2. Rédige un contenu détaillé et engageant
+    3. Respecte les règles du subreddit
+    4. Optimise pour l'engagement
+    
+    Tâche: {task}
+  output_requirements:
+    tone_match: true
+    keyword_presence: true
+    length_valid: true
+  platform_specifics:
+    supports_formatting: true
+    supports_markdown: true
+    special_features:
+      flairs: true
+      awards: true
+      crossposting: true
+  rate_limits:
+    posts_per_day: 50
+    comments_per_day: 100
+  error_handling:
+    max_retries: 3
+    retry_delay: 5
+    timeout: 30
+  logging:
+    level: "INFO"
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    handlers:
+      - type: "console"
+      - type: "file"
+        filename: "logs/reddit_api.log"
+        max_bytes: 10485760
+        backup_count: 5

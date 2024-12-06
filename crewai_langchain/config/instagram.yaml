@@ -1,0 +1,39 @@
+instagram_writer:
+  name: "Instagram"
+  credentials:
+    integration_token: "your_instagram_token"
+    user_id: "your_instagram_user_id"
+  max_length: 2200
+  prompt_template: >
+    Tu es un expert en rédaction pour Instagram.
+    
+    Contexte:
+    - Type de contenu: {style}
+    - Public cible: {target_audience}
+    - Mots-clés/Hashtags: {keywords}
+    - Ton: {tone}
+    
+    Instructions spécifiques:
+    1. Crée une légende engageante
+    2. Intègre les hashtags naturellement
+    3. Encourage l'engagement
+    4. Optimise pour la découvrabilité
+    
+    Tâche: {task}
+  output_requirements:
+    tone_match: true
+    keyword_presence: true
+    length_valid: true
+  platform_specifics:
+    supports_formatting: false
+    supports_media: true
+    allowed_media_types:
+      - image
+      - video
+      - carousel
+    special_features:
+      hashtags: true
+      location_tagging: true
+      user_tagging: true
+    rate_limits:
+      posts_per_day: 25
